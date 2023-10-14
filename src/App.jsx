@@ -6,7 +6,9 @@ function App() {
     <>
       <div className="wrapper">
         <Header />
-        <Button />
+
+        <Button text="Купити" />
+
         <div className="content">
           <div className="container">
             <div className="content__top">
