@@ -1,5 +1,4 @@
-import Header from './pages/Header/Header';
-import Button from './components/Button/Button';
+import { Header, Categories } from './components';
 
 function App() {
   return (
@@ -7,21 +6,19 @@ function App() {
       <div className="wrapper">
         <Header />
 
-        <Button text="Купити" />
-
         <div className="content">
           <div className="container">
             <div className="content__top">
-              <div className="categories">
-                <ul>
-                  <li className="active">Все</li>
-                  <li>М'ясні</li>
-                  <li>Вегетерінаські</li>
-                  <li>Гриль</li>
-                  <li>Гострі</li>
-                  <li>Закриті</li>
-                </ul>
-              </div>
+              <Categories
+                items={[
+                  "М'ясні",
+                  'Вегетерінаські',
+                  'Гриль',
+                  'Гострі',
+                  'Закриті',
+                ]}
+              />
+
               <div className="sort">
                 <div className="sort__label">
                   <svg

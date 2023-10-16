@@ -1,6 +1,11 @@
 import logoSvg from '../../assets/img/pizza-logo.svg';
+import Button from '../Button/Button';
 
 const Header = () => {
+  const clickMouse = () => {
+    console.log('good');
+  };
+
   return (
     <div className="header">
       <div className="container">
@@ -12,7 +17,7 @@ const Header = () => {
           </div>
         </div>
         <div className="header__cart">
-          <a href="/cart.html" className="button button--cart">
+          <Button className="button button--cart" onClick={clickMouse}>
             <span>520 ₴</span>
             <div className="button__delimiter"></div>
             <svg
@@ -45,7 +50,7 @@ const Header = () => {
               />
             </svg>
             <span>3</span>
-          </a>
+          </Button>
         </div>
       </div>
     </div>

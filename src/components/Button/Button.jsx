@@ -2,11 +2,12 @@
 
 // Функціональний компонент
 
-const Button = (props) => {
+const Button = ({ onClick, children, className }) => {
+  // console.log(onClick);
   return (
-    <>
-      <button className="button">{props.text}</button>
-    </>
+    <button onClick={onClick} className={className}>
+      {children}
+    </button>
   );
 };
 
