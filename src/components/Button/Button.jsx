@@ -5,9 +5,11 @@
 const Button = ({ onClick, children, className }) => {
   // console.log(onClick);
   return (
-    <button onClick={onClick} className={className}>
-      {children}
-    </button>
+    <>
+      <button onClick={onClick} className={className}>
+        {children}
+      </button>
+    </>
   );
 };
 

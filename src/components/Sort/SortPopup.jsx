@@ -1,18 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-function SortPopup() {
+function SortPopup({ items }) {
   const [visiblePopup, setVisiblePopup] = useState(false);
+  const [activeItem, setActiveItem] = useState(0);
 
+  // Створюємо useRef для оновлення сторінки коли нам треба, в нашому випадку коли нажали на сортування та якщо десь нажмемо в інше місце щоб заховався список сортування
+  const sortRef = useRef();
+  // console.log(sortRef.current);
+
+  const activeLabel = items[activeItem];
+
+  // це для відображення списку сортування
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup);
   };
 
+  // для відстежування кліку на сторінці
+  const handleOutsideClick = (e) => {
+    // ця хитра перевірка допомогає відслідкувати чи проводився ще десь клік, окрім sortRef(в нас тут блок sort)
+    if (e.target.offsetParent !== sortRef.current) {
+      setVisiblePopup(false);
+      console.log('Ховає');
+    }
+  };
+
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+    setVisiblePopup(false);
+  };
+
+  // коли ми нажимаємо будь де на сторінці, наш клік буде відображатися
   useEffect(() => {
-    console.log('render');
-  }, [visiblePopup]);
+    document.body.addEventListener('click', handleOutsideClick);
+    // console.log(sortRef.current);
+  }, []);
 
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -27,14 +51,21 @@ function SortPopup() {
           />
         </svg>
         <b>Сортування по:</b>
-        <span onClick={toggleVisiblePopup}>популярності</span>
+        <span onClick={toggleVisiblePopup}>{activeLabel}</span>
       </div>
       {visiblePopup && (
         <div className="sort__popup">
           <ul>
-            <li className="active">популярності</li>
-            <li>ціні</li>
-            <li>алфавіту</li>
+            {items && // Якщо items зберігає true то функція виконається, якщо буде false(undefined, null) то функція не виконається
+              items.map((name, index) => (
+                <li
+                  key={`${name}_${index}`}
+                  className={activeItem === index ? 'active' : ''}
+                  onClick={() => onSelectItem(index)}
+                >
+                  {name}
+                </li>
+              ))}
           </ul>
         </div>
       )}

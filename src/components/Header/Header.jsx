@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 
 const Header = () => {
   const clickMouse = () => {
-    console.log('good');
+    // console.log('good');
   };
 
   return (

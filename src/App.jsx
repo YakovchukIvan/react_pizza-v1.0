@@ -19,7 +19,7 @@ function App() {
                 ]}
               />
 
-              <SortPopup />
+              <SortPopup items={['популярність', 'ціна', 'алфавіт']} />
             </div>
 
             <h2 className="content__title">Всі піцци</h2>
