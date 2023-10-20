@@ -6,7 +6,6 @@ function SortPopup({ items }) {
 
   // Створюємо useRef для оновлення сторінки коли нам треба, в нашому випадку коли нажали на сортування та якщо десь нажмемо в інше місце щоб заховався список сортування
   const sortRef = useRef();
-  // console.log(sortRef.current);
 
   const activeLabel = items[activeItem];
 
@@ -26,7 +25,7 @@ function SortPopup({ items }) {
 
   const onSelectItem = (index) => {
     setActiveItem(index);
-    setVisiblePopup(false);
+    setVisiblePopup(false); // коли якесь значення з сортування буде вибрано, ми ховаємо список сортування
   };
 
   // коли ми нажимаємо будь де на сторінці, наш клік буде відображатися
@@ -39,6 +38,7 @@ function SortPopup({ items }) {
     <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
+          className={visiblePopup ? 'rotated' : ''}
           width="10"
           height="6"
           viewBox="0 0 10 6"
