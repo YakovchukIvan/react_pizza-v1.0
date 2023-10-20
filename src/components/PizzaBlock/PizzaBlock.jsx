@@ -2,12 +2,12 @@ import { useState } from 'react';
 import classNames from 'classnames';
 
 function PizzaBlock({ name, imageUrl, price, types, sizes }) {
-  console.log(name, sizes[0]);
+  //   console.log(name, sizes[0]);
 
   const availableTypes = ['тонке', 'традиційне'];
   const availableSizes = [26, 30, 40];
   const [activeType, setActiveType] = useState(types[0]);
-  const [activeSize, setActiveSize] = useState(sizes[0]);
+  const [activeSize, setActiveSize] = useState(0);
 
   const onSelectType = (index) => {
     setActiveType(index);
