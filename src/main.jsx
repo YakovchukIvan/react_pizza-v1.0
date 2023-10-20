@@ -7,9 +7,9 @@ import App from './App.jsx';
 import './scss/app.scss';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+  // </React.StrictMode>
 );

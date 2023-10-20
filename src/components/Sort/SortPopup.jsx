@@ -19,7 +19,7 @@ function SortPopup({ items }) {
     // ця хитра перевірка допомогає відслідкувати чи проводився ще десь клік, окрім sortRef(в нас тут блок sort)
     if (e.target.offsetParent !== sortRef.current) {
       setVisiblePopup(false);
-      console.log('Ховає');
+      // console.log('Ховає');
     }
   };
 
