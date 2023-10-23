@@ -13,8 +13,10 @@
     "axios": "^1.5.1",
     "classnames": "^2.3.2",
     "node-sass": "^9.0.0",
+    "prop-types": "^15.8.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.17.0"
+    "react-router-dom": "^6.17.0",
+    "redux": "^4.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

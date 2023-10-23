@@ -1,4 +1,4 @@
-// import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 // Функціональний компонент
 
@@ -11,6 +11,10 @@ const Button = ({ onClick, children, className }) => {
       </button>
     </>
   );
+};
+
+Button.propTypes = {
+  onClick: PropTypes.func,
 };
 
 export default Button;
