@@ -7,7 +7,8 @@ function SortPopup({ items }) {
   // Створюємо useRef для оновлення сторінки коли нам треба, в нашому випадку коли нажали на сортування та якщо десь нажмемо в інше місце щоб заховався список сортування
   const sortRef = useRef();
 
-  const activeLabel = items[activeItem];
+  const activeLabel = items[activeItem].name;
+  console.log('SortPopup  activeLabel:', activeLabel);
 
   // це для відображення списку сортування
   const toggleVisiblePopup = () => {
@@ -57,13 +58,13 @@ function SortPopup({ items }) {
         <div className="sort__popup">
           <ul>
             {items && // Якщо items зберігає true то функція виконається, якщо буде false(undefined, null) то функція не виконається
-              items.map((name, index) => (
+              items.map((obj, index) => (
                 <li
-                  key={`${name}_${index}`}
+                  key={`${obj.type}_${index}`}
                   className={activeItem === index ? 'active' : ''}
                   onClick={() => onSelectItem(index)}
                 >
-                  {name}
+                  {obj.name}
                 </li>
               ))}
           </ul>

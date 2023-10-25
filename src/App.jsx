@@ -1,16 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import { Header } from './components';
 import { Home, Cart, NotFound } from './pages';
-import { useEffect, useState } from 'react';
+import { setPizzas } from './redux/actions/pizzas';
 
 function App() {
-  const [pizzas, setPizzas] = useState([]);
-
   useEffect(() => {
     axios.get('http://localhost:5173/db.json').then(({ data }) => {
-      setPizzas(data.pizzas);
+      // store.dispatch(setPizzas(data.pizzas));
     });
   }, []);
 
@@ -19,7 +19,7 @@ function App() {
       <Header />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home items={pizzas} />} />
+          <Route path="/" element={<Home items={[]} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -28,4 +28,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    items: state.pizzas.items,
+  };
+};
+
+export default connect(mapStateToProps)(App);
