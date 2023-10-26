@@ -8,7 +8,7 @@ function SortPopup({ items }) {
   const sortRef = useRef();
 
   const activeLabel = items[activeItem].name;
-  console.log('SortPopup  activeLabel:', activeLabel);
+  // console.log('SortPopup  activeLabel:', activeLabel);
 
   // це для відображення списку сортування
   const toggleVisiblePopup = () => {

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
-function Categories({ items }) {
+function Categories({ items, onClickItem }) {
   // // console.log(items);
 
   const [activeItem, setActiveItem] = useState(null);
 
   const onSelectItem = (index) => {
     setActiveItem(index);
+    onClickItem(index);
   };
 
   return (
