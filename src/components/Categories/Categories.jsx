@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 
-function Categories({ items, onClickItem }) {
+// memo тут потрібен щоб не виконувався лишній ререндер сторінки, коли ми вибираємо категорії товарів
+const Categories = memo(function Categories({ items, onClickItem }) {
   // // console.log(items);
 
   const [activeItem, setActiveItem] = useState(null);
@@ -32,6 +33,6 @@ function Categories({ items, onClickItem }) {
       </ul>
     </div>
   );
-}
+});
 
 export default Categories;
