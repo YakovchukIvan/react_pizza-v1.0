@@ -10,3 +10,4 @@ export { default as Categories } from './Categories/Categories';
 export { default as Header } from './Header/Header';
 export { default as SortPopup } from './Sort/SortPopup';
 export { default as PizzaBlock } from './PizzaBlock/PizzaBlock';
+export { default as PizzaLoadingBlock } from './PizzaBlock/Loading';

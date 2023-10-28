@@ -1,22 +1,18 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
 // memo тут потрібен щоб не виконувався лишній ререндер сторінки, коли ми вибираємо категорії товарів
-const Categories = memo(function Categories({ items, onClickItem }) {
-  // // console.log(items);
-
-  const [activeItem, setActiveItem] = useState(null);
-
-  const onSelectItem = (index) => {
-    setActiveItem(index);
-    onClickItem(index);
-  };
-
+const Categories = memo(function Categories({
+  activeCategory,
+  items,
+  onClickCategory,
+}) {
   return (
     <div className="categories">
       <ul>
         <li
-          className={activeItem === null ? 'active' : ''}
-          onClick={() => onSelectItem(null)}
+          className={activeCategory === null ? 'active' : ''}
+          onClick={() => onClickCategory(null)}
         >
           Вся продукція
         </li>
@@ -24,8 +20,8 @@ const Categories = memo(function Categories({ items, onClickItem }) {
           items.map((name, index) => (
             <li
               key={`${name}_${index}`}
-              className={activeItem === index ? 'active' : ''}
-              onClick={() => onSelectItem(index)}
+              className={activeCategory === index ? 'active' : ''}
+              onClick={() => onClickCategory(index)}
             >
               {name}
             </li>
@@ -34,5 +30,16 @@ const Categories = memo(function Categories({ items, onClickItem }) {
     </div>
   );
 });
+
+Categories.propTypes = {
+  activeCategory: PropTypes.number.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClickCategory: PropTypes.func,
+};
+
+Categories.defaultProps = {
+  activeCategory: null,
+  items: [],
+};
 
 export default Categories;
