@@ -7,7 +7,7 @@ import {
   SortPopup,
   PizzaLoadingBlock,
 } from '../components';
-import { setCategory } from '../redux/actions/filters';
+import { setCategory, setSortBy } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
 
 const categoryNames = [
@@ -33,11 +33,15 @@ function Home() {
   console.log(sortBy);
   useEffect(() => {
     // з допомогою redux витягуємо наші товари з бек-енда
-    dispatch(fetchPizzas());
-  }, [category]);
+    dispatch(fetchPizzas(sortBy, category));
+  }, [category, sortBy]);
 
   const onSelectCategory = useCallback((index) => {
     dispatch(setCategory(index));
+  }, []);
+
+  const onSelectSortType = useCallback((type) => {
+    dispatch(setSortBy(type));
   }, []);
 
   return (
@@ -48,7 +52,11 @@ function Home() {
           onClickCategory={onSelectCategory}
           items={categoryNames}
         />
-        <SortPopup items={sortItems} />
+        <SortPopup
+          activeSortType={sortBy}
+          items={sortItems}
+          onClickSortType={onSelectSortType}
+        />
       </div>
 
       <h2 className="content__title">Всі піцци</h2>

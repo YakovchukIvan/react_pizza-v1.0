@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState, memo } from 'react';
 
 // memo тут потрібен щоб не виконувався лишній ререндер сторінки, коли ми вибираємо сортування товарів
-const SortPopup = memo(function SortPopup({ items }) {
+const SortPopup = memo(function SortPopup({
+  items,
+  activeSortType,
+  onClickSortType,
+}) {
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const [activeItem, setActiveItem] = useState(0);
 
   // Створюємо useRef для оновлення сторінки коли нам треба, в нашому випадку коли нажали на сортування та якщо десь нажмемо в інше місце щоб заховався список сортування
   const sortRef = useRef();
 
-  const activeLabel = items[activeItem].name;
+  const activeLabel = items.find((obj) => obj.type === activeSortType).name;
   // console.log('SortPopup  activeLabel:', activeLabel);
 
   // це для відображення списку сортування
@@ -26,7 +29,9 @@ const SortPopup = memo(function SortPopup({ items }) {
   };
 
   const onSelectItem = (index) => {
-    setActiveItem(index);
+    if (onClickSortType) {
+      onClickSortType(index);
+    }
     setVisiblePopup(false); // коли якесь значення з сортування буде вибрано, ми ховаємо список сортування
   };
 
@@ -62,8 +67,8 @@ const SortPopup = memo(function SortPopup({ items }) {
               items.map((obj, index) => (
                 <li
                   key={`${obj.type}_${index}`}
-                  className={activeItem === index ? 'active' : ''}
-                  onClick={() => onSelectItem(index)}
+                  className={activeSortType === obj.type ? 'active' : ''}
+                  onClick={() => onSelectItem(obj.type)}
                 >
                   {obj.name}
                 </li>

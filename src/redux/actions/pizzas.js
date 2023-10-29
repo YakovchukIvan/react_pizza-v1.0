@@ -5,11 +5,17 @@ export const setLoaded = (payload) => ({
   payload,
 });
 
-export const fetchPizzas = () => (dispatch) => {
-  dispatch(setLoaded(false));
-  axios.get('http://localhost:5174/pizzas').then(({ data }) => {
-    dispatch(setPizzas(data));
+export const fetchPizzas = (sortBy, category) => (dispatch) => {
+  dispatch({
+    type: 'SET_LOADED',
+    payload: false,
   });
+  axios
+    .get(`http://localhost:5174/pizzas?category=${category}`)
+    // .get(`http://localhost:5174/pizzas`)
+    .then(({ data }) => {
+      dispatch(setPizzas(data));
+    });
 };
 
 export const setPizzas = (items) => ({
