@@ -18,9 +18,9 @@ const categoryNames = [
   'Закриті',
 ];
 const sortItems = [
-  { name: 'популярність', type: 'popular' },
-  { name: 'ціна', type: 'price' },
-  { name: 'алфавіт', type: 'alphabet' },
+  { name: 'популярність', type: 'popular', order: 'desc' },
+  { name: 'ціна', type: 'price', order: 'desc' },
+  { name: 'алфавіт', type: 'name', order: 'asc' },
 ];
 
 function Home() {
@@ -53,7 +53,7 @@ function Home() {
           items={categoryNames}
         />
         <SortPopup
-          activeSortType={sortBy}
+          activeSortType={sortBy.type}
           items={sortItems}
           onClickSortType={onSelectSortType}
         />
