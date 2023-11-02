@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 // Функціональний компонент
 
 const Button = ({ onClick, children, className }) => {
-  // console.log(onClick);
   return (
     <>
       <button onClick={onClick} className={className}>
